@@ -4,6 +4,7 @@ namespace Gate {
 
     class Logger {
     public:
+        Logger();
         static void Init();
         static void Destroy();
         static Logger* Get();
@@ -13,8 +14,6 @@ namespace Gate {
     private:
         static Logger* s_Instance;
         
-    protected:
-        Logger();
     };
 
 }

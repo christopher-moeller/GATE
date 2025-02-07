@@ -1,5 +1,7 @@
 #include "AndroidLogger.h"
 
+#ifdef GATE_PLATFORM_ANDROID
+
 #include <android/log.h>
 
 namespace Gate {
@@ -13,3 +15,5 @@ namespace Gate {
     }
 
 }
+
+#endif
