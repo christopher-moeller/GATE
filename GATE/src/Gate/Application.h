@@ -12,7 +12,7 @@ namespace Gate {
         
         virtual void Init() = 0;
         virtual void Step() = 0;
-        virtual const char* GetPlattformName() = 0;
+        virtual const char* GetPlatformName() = 0;
         
     private:
         

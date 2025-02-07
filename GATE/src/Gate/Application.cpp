@@ -1,6 +1,6 @@
 #include "Application.h"
 
-#include "Plattform/PlattformFactory.h"
+#include "Platform/PlatformFactory.h"
 
 #include <iostream>
 
@@ -25,7 +25,7 @@ namespace Gate {
 
     Application::Application()
     {
-        std::cout << "Applicaiton created" << std::endl;
+        std::cout << "Application created" << std::endl;
     }
 
 }

@@ -7,6 +7,6 @@ int main() {
     Gate::Application::CreateInstance();
     Gate::Application* app = Gate::Application::Get();
     
-    std::cout << "Hello: " << app->GetPlattformName() << std::endl;
+    std::cout << "Hello: " << app->GetPlatformName() << std::endl;
     
 }

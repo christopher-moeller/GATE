@@ -9,7 +9,7 @@ namespace Gate {
         void Init() override;
         void Step() override;
         
-        inline const char* GetPlattformName() override { return "MacOS"; };
+        inline const char* GetPlatformName() override { return "MacOS"; };
         
     };
 
