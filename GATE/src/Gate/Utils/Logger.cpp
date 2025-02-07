@@ -1,5 +1,7 @@
 #include "Logger.h"
 #include <iostream>
+#include "Gate/Base.h"
+#include "Platform/PlatformFactory.h"
 
 namespace Gate {
 
@@ -10,17 +12,17 @@ namespace Gate {
     }
 
     void Logger::Init() {
-        // TODO: assert null
-        s_Instance = new Logger();
+        GATE_ASSERT(s_Instance == nullptr, "Logger already created");
+        s_Instance = PlatformFactory::CreateNewLoggerInstance();
     }
 
     void Logger::Destroy() {
-        // TODO: assert not null
+        GATE_ASSERT(s_Instance != nullptr, "Logger not created yet");
         delete s_Instance;
     }
 
     Logger* Logger::Get() {
-        // TODO: assert not null
+        GATE_ASSERT(s_Instance != nullptr, "Logger not created yet");
         return s_Instance;
     }
 

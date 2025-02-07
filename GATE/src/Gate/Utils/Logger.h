@@ -8,8 +8,8 @@ namespace Gate {
         static void Destroy();
         static Logger* Get();
         
-        void info(const char* message, ...);
-        void error(const char* message, ...);
+        virtual void info(const char* message, ...);
+        virtual void error(const char* message, ...);
     private:
         static Logger* s_Instance;
         

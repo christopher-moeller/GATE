@@ -10,27 +10,28 @@ namespace Gate {
     Application* Application::s_Instance = nullptr;
 
     Application* Application::Get() {
-        // TODO: assert not null
+        GATE_ASSERT(s_Instance != nullptr, "Instance not created yet");
         return s_Instance;
     }
 
     void Application::CreateInstance() {
-        // TODO: assert null
-        s_Instance = CreateNewApplicationInstance();
+        GATE_ASSERT(s_Instance == nullptr, "Instance already created");
+        s_Instance = PlatformFactory::CreateNewApplicationInstance();
     }
 
     void Application::DestroyInstance() {
-        // TODO: assert not null
+        GATE_ASSERT(s_Instance != nullptr, "Instance not created yet");
         delete s_Instance;
     }
 
     Application::Application()
     {
-        Logger::Init();
+        //Logger::Init();
+        Gate::Logger::Init();
     }
 
     Application::~Application() {
-        Logger::Destroy();
+        //Logger::Destroy();
     }
 
 }
