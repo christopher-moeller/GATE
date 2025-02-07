@@ -29,6 +29,9 @@ project "GATE"
     {
         "%{prj.name}/src",
     }
+
+    filter "system:macosx"
+        defines { "GATE_PLATFORM_MACOS" }
     
     filter "configurations:Debug"
         defines { "GATE_DEBUG" }
@@ -71,6 +74,9 @@ project "MacSandbox"
     {
         "GATE",
     }
+
+    filter "system:macosx"
+        defines { "GATE_PLATFORM_MACOS" }
     
     filter "configurations:Debug"
         defines { "GATE_DEBUG" }
