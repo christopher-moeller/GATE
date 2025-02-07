@@ -26,12 +26,12 @@ namespace Gate {
 
     Application::Application()
     {
-        //Logger::Init();
-        Gate::Logger::Init();
+        Logger::Init();
+        GATE_LOG_INFO("GATE Application created");
     }
 
     Application::~Application() {
-        //Logger::Destroy();
+        Logger::Destroy();
     }
 
 }
