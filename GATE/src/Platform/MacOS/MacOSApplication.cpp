@@ -1,4 +1,5 @@
 #include "MacOSApplication.h"
+#include <iostream>
 
 namespace Gate {
 

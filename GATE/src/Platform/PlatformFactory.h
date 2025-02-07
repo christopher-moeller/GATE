@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Gate/Application.h"
 
 #ifdef GATE_PLATFORM_MACOS

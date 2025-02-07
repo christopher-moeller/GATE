@@ -1,5 +1,6 @@
 #include "Application.h"
 
+#include "Gate/Base.h"
 #include "Platform/PlatformFactory.h"
 
 #include <iostream>
@@ -25,7 +26,11 @@ namespace Gate {
 
     Application::Application()
     {
-        std::cout << "Application created" << std::endl;
+        Logger::Init();
+    }
+
+    Application::~Application() {
+        Logger::Destroy();
     }
 
 }

@@ -20,7 +20,7 @@ namespace Gate {
         
     protected:
         Application();
-        virtual ~Application() = default;
+        ~Application();
     };
 
 
