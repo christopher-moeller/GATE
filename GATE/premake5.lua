@@ -10,13 +10,15 @@ project "GATE"
     files 
     { 
         "src/**.h", 
-        "src/**.cpp"
+        "src/**.cpp",
+        "src/**.mm"
     }
 
     includedirs
     {
-        "src",
+        "src"
     }
+
 
     filter "system:macosx"
         defines { "GATE_PLATFORM_MACOS" }

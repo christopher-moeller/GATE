@@ -26,6 +26,7 @@ project "MacSandbox"
     links
     {
         "GATE",
+        "Cocoa.framework", "Metal.framework", "MetalKit.framework", "QuartzCore.framework"
     }
 
     filter "system:macosx"
