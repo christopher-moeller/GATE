@@ -1,17 +1,22 @@
 #pragma once
 
 #include "Gate/Rendering/Target/Window.h"
-#include "MacOSOpenGLNativeWindow.h"
+#include <GLFW/glfw3.h>
 
 namespace Gate {
 
+
     class MacOSWindow : public Window {
     public:
+        virtual ~MacOSWindow();
+        
         virtual void Init() override;
+        virtual void PollEvents() override;
         virtual void SwappBuffers() override;
+        virtual void Destroy() override;
         
     private:
-        MacOSOpenGLNativeWindow* m_NativeWindow;
+        GLFWwindow* m_NativeWindow;
     };
 
 }

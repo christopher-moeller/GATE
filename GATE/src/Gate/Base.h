@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Gate/Utils/Logger.h"
+#include <memory>
 
 #define TEST_DEBUG
 

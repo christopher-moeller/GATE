@@ -7,7 +7,7 @@ project "MacSandbox"
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-    dependson { "GATE" } -- Ensure GATE builds first
+    dependson { "GATE", "GLFW" } -- Ensure GATE builds first
 
     files 
     { 
@@ -21,12 +21,19 @@ project "MacSandbox"
     }
 
     libdirs { 
-        "bin/" .. outputdir .. "/GATE"
+        "bin/" .. outputdir .. "/GATE",
+        "GATE/vendor/GLFW/bin/" .. outputdir .. "/GLFW"
      }
     links
     {
         "GATE",
-        "Cocoa.framework", "Metal.framework", "MetalKit.framework", "QuartzCore.framework"
+        "OpenGL.framework",
+        "GLFW",
+        "Cocoa.framework",
+        "IOKit.framework",
+        "CoreFoundation.framework",
+        "CoreVideo.framework",
+        "QuartzCore.framework"  -- Add this line to link QuartzCore
     }
 
     filter "system:macosx"

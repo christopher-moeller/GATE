@@ -16,8 +16,17 @@ project "GATE"
 
     includedirs
     {
-        "src"
+        "src",
+        "vendor/GLFW/source/include",
     }
+
+    externalincludedirs { 
+        "vendor/GLFW/source/include",
+    }
+
+    libdirs { 
+        "bin/" .. outputdir .. "/GATE"
+     }
 
 
     filter "system:macosx"

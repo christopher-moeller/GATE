@@ -12,3 +12,4 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 include "GATE"
 include "MacSandbox"
+include "GATE/vendor/GLFW"

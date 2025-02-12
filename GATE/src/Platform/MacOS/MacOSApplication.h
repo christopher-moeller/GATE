@@ -2,6 +2,7 @@
 
 #include "Gate/Application.h"
 #include "Gate/Rendering/Target/Window.h"
+#include "Gate/Base.h"
 
 namespace Gate {
 
@@ -14,8 +15,7 @@ namespace Gate {
         inline const char* GetPlatformName() override { return "MacOS"; };
         
     private:
-        Window* m_Window;
-        
+        std::unique_ptr<Window> m_Window;
     };
 
 }

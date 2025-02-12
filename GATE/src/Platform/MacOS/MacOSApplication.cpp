@@ -5,13 +5,15 @@
 namespace Gate {
 
     void MacOSApplication::Init() {
-        m_Window = new MacOSWindow();
+        m_Window.reset(new MacOSWindow());
         m_Window->Init();
-        // TODO: delete again
+        
     }
 
     void MacOSApplication::Step() {
-        
+        m_Window->PollEvents();
+        // Render Triangle
+        m_Window->SwappBuffers();
     }
 
 }

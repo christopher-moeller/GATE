@@ -1,76 +1,56 @@
 #include "MacOSWindow.h"
+#include "Gate/Base.h"
+#include <stdio.h>
 
 namespace Gate {
 
+    void GLFWErrorCallback(int error, const char* description) {
+        fprintf(stderr, "GLFW Error (%d): %s\n", error, description);
+    }
+
+    MacOSWindow::~MacOSWindow() {
+        Destroy();
+    }
+
     void MacOSWindow::Init() {
-        m_NativeWindow = new MacOSOpenGLNativeWindow(800, 600, "Metal Window"); // TODO: make smart pointer
+        GATE_LOG_INFO("Init Window");
+
+        glfwSetErrorCallback(GLFWErrorCallback);
+        if (!glfwInit()) {
+            GATE_LOG_ERROR("Failed to initialize GLFW");
+            return;
+        }
+
+
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // Specific for OpenGL
+        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // Specific for MacOS
+         
+
+        // Create a GLFW window
+        m_NativeWindow = glfwCreateWindow(1200, 800, "GATE Window", nullptr, nullptr);
+        if (!m_NativeWindow) {
+            GATE_LOG_ERROR("Failed to create GLFW window");
+            glfwTerminate();
+            return;
+        }
+
+        glfwMakeContextCurrent(m_NativeWindow);
+         
+    }
+
+    void MacOSWindow::PollEvents() {
+        glfwPollEvents();
     }
 
     void MacOSWindow::SwappBuffers() {
-        m_NativeWindow->swapBuffers();
+        glfwSwapBuffers(m_NativeWindow);
     }
 
-/*
-MetalWindow metalWindow(800, 600, "Metal Window");
-bool running = true;
-while (running) {
-    metalWindow.pollEvents();  // Handle macOS events
-    //renderTriangle();     // Render OpenGL content
-    metalWindow.swapBuffers(); // Swap OpenGL buffers
-
-    //std::this_thread::sleep_for(std::chrono::milliseconds(16)); // ~60 FPS
-
-    // You can set running = false if you want to exit (e.g., based on user input)
-}
- */
-
-/*
-GATE_LOG_INFO("Init Window");
-
-if (!glfwInit()) {
-    GATE_LOG_ERROR("Failed to initialize GLFW");
-    return;
-}
-
-glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-
-
-glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // TODO: OpenGL specific
- 
-
-
-// Create a GLFW window
-GLFWwindow* window = glfwCreateWindow(1200, 800, "GATE Window", nullptr, nullptr);
-if (!window) {
-    GATE_LOG_ERROR("Failed to create GLFW window");
-    glfwTerminate();
-    return;
-}
-
-glfwMakeContextCurrent(window);
-*/
-
-//glfwPollEvents();
-/*
-
-// TODO: should not be here
-// Main loop
-while (!glfwWindowShouldClose(window)) {
-
-    
-    //glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-    //glClear(GL_COLOR_BUFFER_BIT);
-    
-
-    //glfwSwapBuffers(window);
-    glfwPollEvents();
-}
- */
-
-
-//glfwDestroyWindow(window);
-//glfwTerminate();
+    void MacOSWindow::Destroy() {
+        glfwDestroyWindow(m_NativeWindow);
+        glfwTerminate();
+    }
 
 }
