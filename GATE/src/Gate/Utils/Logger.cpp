@@ -26,12 +26,4 @@ namespace Gate {
         return s_Instance;
     }
 
-    void Logger::info(const char *message, ...) {
-        std::cout << message << std::endl;
-    }
-
-    void Logger::error(const char *message, ...) {
-        std::cout << message << std::endl;
-    }
-
 }

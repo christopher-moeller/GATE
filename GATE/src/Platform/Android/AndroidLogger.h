@@ -6,8 +6,8 @@ namespace Gate {
 
     class AndroidLogger : public Logger {
 
-        void info(const char *message, ...) override;
-        void error(const char *message, ...) override;
+        void Info(const char *message, ...) override;
+        void Error(const char *message, ...) override;
 
     };
 

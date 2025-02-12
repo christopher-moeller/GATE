@@ -1,4 +1,5 @@
 #include "PlatformFactory.h"
+#include "Gate/Utils/SPDLogger.h"
 
 #ifdef GATE_PLATFORM_MACOS
 
@@ -29,9 +30,9 @@ namespace Gate {
 
     Logger* PlatformFactory::CreateNewLoggerInstance() {
         #ifdef GATE_PLATFORM_ANDROID
-                return new AndroidLogger();
+            return new SPDLogger(); //AndroidLogger();
         #else
-                return new Logger();
+            return new SPDLogger();
         #endif
     }
 

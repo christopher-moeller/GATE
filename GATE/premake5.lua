@@ -18,10 +18,12 @@ project "GATE"
     {
         "src",
         "vendor/GLFW/source/include",
+        "vendor/spdlog/source/include"
     }
 
     externalincludedirs { 
         "vendor/GLFW/source/include",
+        "vendor/spdlog/source/include"
     }
 
     libdirs { 

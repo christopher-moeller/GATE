@@ -2,6 +2,8 @@
 #include "Gate/Base.h"
 #include <stdio.h>
 
+#include "spdlog/spdlog.h"
+
 namespace Gate {
 
     void GLFWErrorCallback(int error, const char* description) {
