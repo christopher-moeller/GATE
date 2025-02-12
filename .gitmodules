@@ -7,3 +7,6 @@
 [submodule "premake/android"]
 	path = premake/android
 	url = git@github.com:polymonster/premake-android-studio.git
+[submodule "premake/cmake"]
+	path = premake/cmake
+	url = https://github.com/Jarod42/premake-cmake.git
