@@ -4,3 +4,6 @@
 [submodule "GATE/vendor/spdlog/source"]
 	path = GATE/vendor/spdlog/source
 	url = git@github.com:gabime/spdlog.git
+[submodule "premake/android"]
+	path = premake/android
+	url = git@github.com:polymonster/premake-android-studio.git
