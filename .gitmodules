@@ -1,3 +1,6 @@
 [submodule "GATE/vendor/GLFW/source"]
 	path = GATE/vendor/GLFW/source
 	url = git@github.com:glfw/glfw.git
+[submodule "GATE/vendor/spdlog/source"]
+	path = GATE/vendor/spdlog/source
+	url = git@github.com:gabime/spdlog.git
