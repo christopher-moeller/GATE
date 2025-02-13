@@ -28,7 +28,7 @@ def copy_directory_recursive(src_dir: str, dest_dir: str) -> None:
 
 if __name__ == "__main__":
 
-    android_lib__dir_name = "android-lib"
+    android_lib__dir_name = "../android-lib"
 
     # Delete destination directory if it exists
     if os.path.exists(android_lib__dir_name):

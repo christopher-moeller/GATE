@@ -31,10 +31,11 @@ namespace Gate {
         return s_Instance;
     }
 
-    void Application::Create() {
+    Application* Application::Create() {
         //GATE_ASSERT(s_Instance == nullptr, "Instance already created");
         s_Instance = static_cast<Application*>(new APPLICATION_CLASS());
         std::cout << "Application of type " << s_Instance->GetPlatformName() << " created!" << std::endl;
+        return s_Instance;
     }
 
     void Application::Destroy() {

@@ -5,7 +5,7 @@ namespace Gate {
     class Application
     {
     public:
-        static void Create();
+        static Application* Create();
         static void Destroy();
         static Application* Get();
         Application(Application& obj) = delete;
