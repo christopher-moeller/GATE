@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Gate/Application.h"
-#include "Gate/Rendering/Target/Window.h"
 #include "Gate/Base.h"
 
 namespace Gate {
@@ -14,8 +13,6 @@ namespace Gate {
         
         inline const char* GetPlatformName() override { return "MacOS"; };
         
-    private:
-        std::unique_ptr<Window> m_Window;
     };
 
 }

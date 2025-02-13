@@ -1,37 +1,54 @@
 #include "Application.h"
-
-#include "Gate/Base.h"
-#include "Platform/PlatformFactory.h"
-
 #include <iostream>
+
+#ifdef GATE_PLATFORM_MACOS
+
+#include "Platform/MacOS/MacOSApplication.h"
+#define APPLICATION_CLASS MacOSApplication
+
+#elif defined GATE_PLATFORM_ANDROID
+
+#include "Platform/Android/AndroidApplication.h"
+#define APPLICATION_CLASS AndroidApplication
+
+#elif defined GATE_PLATFORM_WINDOWS
+
+#error "Windows currently not supported"
+
+#else
+
+#error "No Platform defined"
+
+#endif
+
 
 namespace Gate {
 
     Application* Application::s_Instance = nullptr;
 
     Application* Application::Get() {
-        GATE_ASSERT(s_Instance != nullptr, "Instance not created yet");
+        //GATE_ASSERT(s_Instance != nullptr, "Instance not created yet");
         return s_Instance;
     }
 
-    void Application::CreateInstance() {
-        GATE_ASSERT(s_Instance == nullptr, "Instance already created");
-        s_Instance = PlatformFactory::CreateNewApplicationInstance();
+    void Application::Create() {
+        //GATE_ASSERT(s_Instance == nullptr, "Instance already created");
+        s_Instance = static_cast<Application*>(new APPLICATION_CLASS());
+        std::cout << "Application of type " << s_Instance->GetPlatformName() << " created!" << std::endl;
     }
 
-    void Application::DestroyInstance() {
-        GATE_ASSERT(s_Instance != nullptr, "Instance not created yet");
+    void Application::Destroy() {
+        //GATE_ASSERT(s_Instance != nullptr, "Instance not created yet");
         delete s_Instance;
     }
 
     Application::Application()
     {
-        Logger::Init();
-        GATE_LOG_INFO("GATE Application created");
+        
     }
 
     Application::~Application() {
-        Logger::Destroy();
+        
     }
 
 }
