@@ -7,11 +7,11 @@
 namespace Gate {
 
     void AndroidLogger::LogInfoMessage(const std::string &message) {
-        __android_log_print(ANDROID_LOG_INFO, "TRACKERS", "%s", message);
+        __android_log_print(ANDROID_LOG_INFO, "TRACKERS", "%s", message.c_str());
     }
 
     void AndroidLogger::LogErrorMessage(const std::string &message) {
-        __android_log_print(ANDROID_LOG_ERROR, "TRACKERS", "%s", message);
+        __android_log_print(ANDROID_LOG_ERROR, "TRACKERS", "%s", message.c_str());
     }
 
 }

@@ -8,7 +8,7 @@
     #ifdef GATE_PLATFORM_MACOS
         #define GATE_ASSERT(x, ...) { if(!(x)) { GATE_LOG_ERROR("Assertion Failed {}", __VA_ARGS__); __builtin_debugtrap(); } }
     #elif defined GATE_PLATFORM_ANDROID
-        #define GATE_ASSERT(x, ...) { if(!(x)) { GATE_LOG_ERROR("Assertion Failed {}", __VA_ARGS__); __builtin_trap(); } }
+        #define GATE_ASSERT(x, ...) { if(!(x)) { GATE_LOG_ERROR("Assertion Failed {}", __VA_ARGS__); __builtin_debugtrap(); } }
     #else
         #define GATE_ASSERT(x, ...) { if(!(x)) { GATE_LOG_ERROR("Assertion Failed {}", __VA_ARGS__); } }
     #endif
