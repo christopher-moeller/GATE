@@ -10,20 +10,19 @@ project "GATE"
     files 
     { 
         "src/**.h", 
-        "src/**.cpp",
-        "src/**.mm"
+        "src/**.cpp"
     }
 
     includedirs
     {
         "src",
         "vendor/GLFW/source/include",
-        "vendor/spdlog/source/include"
+        "vendor/glm"
     }
 
     externalincludedirs { 
         "vendor/GLFW/source/include",
-        "vendor/spdlog/source/include"
+        "vendor/glm"
     }
 
     libdirs { 

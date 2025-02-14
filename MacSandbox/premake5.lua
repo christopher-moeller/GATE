@@ -17,7 +17,12 @@ project "MacSandbox"
 
     includedirs
     {
-        "../GATE/src"
+        "../GATE/src",
+        "../GATE/vendor/glm"
+    }
+
+    externalincludedirs { 
+        "../GATE/vendor/glm"
     }
 
     libdirs { 
@@ -28,12 +33,7 @@ project "MacSandbox"
     {
         "GATE",
         "OpenGL.framework",
-        "GLFW",
-        "Cocoa.framework",
-        "IOKit.framework",
-        "CoreFoundation.framework",
-        "CoreVideo.framework",
-        "QuartzCore.framework"  -- Add this line to link QuartzCore
+        "GLFW"
     }
 
     filter "system:macosx"
