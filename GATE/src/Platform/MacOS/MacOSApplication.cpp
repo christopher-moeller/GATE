@@ -1,6 +1,7 @@
 #include "MacOSApplication.h"
 #include <iostream>
 #include "Gate/Utils/StdLogger.h"
+#include "Gate/Base.h"
 
 namespace Gate {
 

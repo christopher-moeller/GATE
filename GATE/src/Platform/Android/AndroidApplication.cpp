@@ -1,5 +1,6 @@
 #include "AndroidApplication.h"
 #include "Utils/AndroidLogger.h"
+#include "Gate/Base.h"
 
 
 namespace Gate {
