@@ -1,5 +1,8 @@
 #pragma once
 
+#include "Gate/Utils/Logger.h"
+#include <memory>
+
 namespace Gate {
 
     class Application
@@ -14,6 +17,8 @@ namespace Gate {
         virtual void Step() = 0;
         virtual const char* GetPlatformName() = 0;
         
+        inline std::unique_ptr<Logger>& GetLogger() { return m_Logger; }
+        
     private:
         
         static Application* s_Instance;
@@ -21,6 +26,8 @@ namespace Gate {
     protected:
         Application();
         virtual ~Application();
+        
+        std::unique_ptr<Logger> m_Logger;
     };
 
 

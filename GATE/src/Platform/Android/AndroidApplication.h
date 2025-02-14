@@ -6,6 +6,7 @@ namespace Gate {
 
     class AndroidApplication : public Application {
         
+    public:
         void Init() override;
         void Step() override;
         

@@ -11,6 +11,8 @@ int main() {
     Gate::Application* app = Gate::Application::Get();
     app->Init();
     
+    app->GetLogger()->Info("Hallo {}", 42);
+    
     while (true) {
         sleep(1);
         app->Step();
