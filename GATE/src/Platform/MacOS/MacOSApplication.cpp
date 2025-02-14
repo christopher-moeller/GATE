@@ -9,6 +9,6 @@ namespace Gate {
     }
 
     void MacOSApplication::Step() {
-        GetLogger()->Info("STEP");
+        GATE_LOG_INFO("Mac Step");
     }
 }

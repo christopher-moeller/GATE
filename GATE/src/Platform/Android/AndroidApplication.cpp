@@ -9,7 +9,7 @@ namespace Gate {
     }
 
     void AndroidApplication::Step() {
-        GetLogger()->Info("STEP");
+        GATE_LOG_INFO("Android Step");
     }
 
 

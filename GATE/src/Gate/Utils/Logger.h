@@ -59,3 +59,6 @@ namespace Gate {
     };
 
 }
+
+#define GATE_LOG_INFO(...)    ::Gate::Application::Get()->GetLogger()->Info(__VA_ARGS__)
+#define GATE_LOG_ERROR(...)    ::Gate::Application::Get()->GetLogger()->Error(__VA_ARGS__)

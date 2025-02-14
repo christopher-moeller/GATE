@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Gate/Utils/Logger.h"
-#include <memory>
+#include "Base.h"
+
 
 namespace Gate {
 

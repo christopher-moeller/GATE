@@ -11,7 +11,7 @@ int main() {
     Gate::Application* app = Gate::Application::Get();
     app->Init();
     
-    app->GetLogger()->Info("Hallo {}", 42);
+    GATE_LOG_INFO("Application created!");
     
     while (true) {
         sleep(1);
