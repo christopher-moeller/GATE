@@ -2,7 +2,7 @@ import os
 import shutil
 
 def should_copy(entry_name: str) -> bool:
-    return not entry_name.startswith("MacOS")
+    return not entry_name.startswith("MacOS") and not entry_name.startswith("GLFW")
 
 def copy_directory_recursive(src_dir: str, dest_dir: str) -> None:
     if not os.path.exists(src_dir):
@@ -41,3 +41,17 @@ if __name__ == "__main__":
     source_directory = "GATE/src"
     copy_directory_recursive(source_directory, android_lib__dir_name)
     print(f"Copy completed from '{source_directory}' to '{android_lib__dir_name}'.")
+
+
+    #### Third Party ####
+    third_party_dir_name = "../third_party"
+
+    if os.path.exists(third_party_dir_name):
+        shutil.rmtree(third_party_dir_name)
+
+    os.mkdir(third_party_dir_name)
+    print("Directory", third_party_dir_name, "created")
+
+    source_directory = "GATE/vendor"
+    copy_directory_recursive(source_directory, third_party_dir_name)
+    print(f"Copy completed from '{source_directory}' to '{third_party_dir_name}'.")
