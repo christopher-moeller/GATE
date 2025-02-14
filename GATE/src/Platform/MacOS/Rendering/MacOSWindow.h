@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Gate/Rendering/Target/Window.h"
+#include "Gate/Rendering/Window.h"
 #include <GLFW/glfw3.h>
 
 namespace Gate {

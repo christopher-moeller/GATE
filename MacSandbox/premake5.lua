@@ -17,7 +17,12 @@ project "MacSandbox"
 
     includedirs
     {
-        "../GATE/src"
+        "../GATE/src",
+        "../GATE/vendor/glm"
+    }
+
+    externalincludedirs { 
+        "../GATE/vendor/glm"
     }
 
     libdirs { 

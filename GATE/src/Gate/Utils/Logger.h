@@ -1,22 +1,61 @@
 #pragma once
 
-namespace Gate {
+#include <string>
+#include <sstream>
+#include <cstdarg>
+#include <vector>
 
+namespace Gate {
+    
     class Logger {
+      
     public:
-        Logger();
-        static void Init();
-        static void Destroy();
-        static Logger* Get();
+        template<typename... Args>
+        void Info(const std::string& format, Args&&... args) {
+            std::string message = formatString(format, std::forward<Args>(args)...);
+            LogInfoMessage(message);
+        }
         
-        virtual void Info(const char* message, ...) = 0;
-        virtual void Error(const char* message, ...) = 0;
+        template<typename... Args>
+        void Error(const std::string& format, Args&&... args) {
+            std::string message = formatString(format, std::forward<Args>(args)...);
+            LogErrorMessage(message);
+        }
+        
+    protected:
+        virtual void LogInfoMessage(const std::string& message) = 0;
+        virtual void LogErrorMessage(const std::string& message) = 0;
+        
     private:
-        static Logger* s_Instance;
-        
+        template<typename... Args>
+        static std::string formatString(const std::string& format, Args&&... args) {
+            std::ostringstream oss;
+            size_t argIndex = 0;
+            std::vector<std::string> values = {toString(std::forward<Args>(args))...};
+
+            for (size_t i = 0; i < format.length(); ++i) {
+                if (format[i] == '{' && i + 1 < format.length() && format[i + 1] == '}') {
+                    if (argIndex < values.size()) {
+                        oss << values[argIndex++];
+                        i++;  // Skip the '}'
+                    } else {
+                        oss << "{}";  // Placeholder without matching argument
+                    }
+                } else {
+                    oss << format[i];
+                }
+            }
+
+            return oss.str();
+        }
+      
+        // Utility to convert any type to a string
+        template<typename T>
+        static std::string toString(T&& value) {
+            std::ostringstream oss;
+            oss << value;
+            return oss.str();
+        }
     };
 
 }
-
-#define GATE_LOG_INFO(...)    ::Gate::Logger::Get()->Info(__VA_ARGS__)
-#define GATE_LOG_ERROR(...)    ::Gate::Logger::Get()->Error(__VA_ARGS__)

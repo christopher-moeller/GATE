@@ -34,3 +34,5 @@
 bin
 *.xcworkspace
 *.xcodeproj
+
+android-lib

@@ -1,8 +1,6 @@
 #include "MacOSWindow.h"
-#include "Gate/Base.h"
 #include <stdio.h>
-
-#include "spdlog/spdlog.h"
+#include "Gate/Base.h"
 
 namespace Gate {
 
@@ -17,6 +15,8 @@ namespace Gate {
     void MacOSWindow::Init() {
         GATE_LOG_INFO("Init Window");
 
+        glfwSetErrorCallback(GLFWErrorCallback);
+        
         glfwSetErrorCallback(GLFWErrorCallback);
         if (!glfwInit()) {
             GATE_LOG_ERROR("Failed to initialize GLFW");
@@ -39,6 +39,7 @@ namespace Gate {
         }
 
         glfwMakeContextCurrent(m_NativeWindow);
+         
          
     }
 
