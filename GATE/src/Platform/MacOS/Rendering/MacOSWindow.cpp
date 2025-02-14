@@ -16,6 +16,8 @@ namespace Gate {
         GATE_LOG_INFO("Init Window");
 
         glfwSetErrorCallback(GLFWErrorCallback);
+        
+        glfwSetErrorCallback(GLFWErrorCallback);
         if (!glfwInit()) {
             GATE_LOG_ERROR("Failed to initialize GLFW");
             return;
@@ -37,6 +39,7 @@ namespace Gate {
         }
 
         glfwMakeContextCurrent(m_NativeWindow);
+         
          
     }
 

@@ -33,7 +33,12 @@ project "MacSandbox"
     {
         "GATE",
         "OpenGL.framework",
-        "GLFW"
+        "GLFW",
+        "Cocoa.framework",
+        "IOKit.framework",
+        "CoreFoundation.framework",
+        "CoreVideo.framework",
+        "QuartzCore.framework"  -- Add this line to link QuartzCore
     }
 
     filter "system:macosx"

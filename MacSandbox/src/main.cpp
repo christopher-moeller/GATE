@@ -14,7 +14,6 @@ int main() {
     GATE_LOG_INFO("Application created!");
     
     while (true) {
-        sleep(1);
         app->Step();
     }
     
