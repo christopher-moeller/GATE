@@ -6,7 +6,7 @@
 
 namespace Gate {
 
-    void MacOSApplication::Init() {
+    void MacOSApplication::InitInternal() {
         m_Logger = std::make_unique<StdLogger>();
         
         m_Window.reset(new MacOSWindow());
@@ -18,4 +18,9 @@ namespace Gate {
         // Render Triangle
         m_Window->SwappBuffers();
     }
+
+    std::unique_ptr<Logger> MacOSApplication::CreateLogger() {
+        return std::make_unique<StdLogger>();
+    }
+
 }

@@ -11,10 +11,17 @@ int main() {
     Gate::Application* app = Gate::Application::Get();
     app->Init();
     
-    GATE_LOG_INFO("Application created!");
+    bool isRunning = true;
     
-    while (true) {
+    app->GetEventManager()->AddListener(Gate::EventType::WindowClose, [&isRunning](Gate::Event& event) {
+        isRunning = false;
+        return false;
+    });
+    
+    while (isRunning) {
         app->Step();
     }
+    
+    delete app;
     
 }

@@ -5,12 +5,16 @@
 
 namespace Gate {
 
-    void AndroidApplication::Init() {
-        m_Logger = std::make_unique<AndroidLogger>();
+    void AndroidApplication::InitInternal() {
+        
     }
 
     void AndroidApplication::Step() {
         GATE_LOG_INFO("Android Step");
+    }
+
+    std::unique_ptr<Logger> AndroidApplication::CreateLogger() {
+        return std::make_unique<AndroidLogger>();
     }
 
 

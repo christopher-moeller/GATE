@@ -39,7 +39,38 @@ namespace Gate {
         }
 
         glfwMakeContextCurrent(m_NativeWindow);
-         
+        
+        glfwSetWindowUserPointer(m_NativeWindow, Application::Get()->GetEventManager().get());
+        
+        glfwSetMouseButtonCallback(m_NativeWindow, [](GLFWwindow* window, int button, int action, int mods) {
+            
+            EventManager* eventManager = (EventManager*) glfwGetWindowUserPointer(window);
+            
+            double xpos, ypos;
+            glfwGetCursorPos(window, &xpos, &ypos);
+            
+            switch (action) {
+                case GLFW_PRESS:
+                {
+                    //eventManager->Test();
+                    MouseButtonPressedEvent event(xpos, ypos, button);
+                    eventManager->PushEvent(event);
+                    break;
+                }
+                case GLFW_RELEASE:
+                {
+                    
+                    break;
+                }
+            }
+            
+        });
+        
+        glfwSetWindowCloseCallback(m_NativeWindow, [](GLFWwindow* window) {
+            EventManager* eventManager = (EventManager*) glfwGetWindowUserPointer(window);
+            WindowCloseEvent event;
+            eventManager->PushEvent(event);
+        });
          
     }
 
@@ -54,6 +85,7 @@ namespace Gate {
     void MacOSWindow::Destroy() {
         glfwDestroyWindow(m_NativeWindow);
         glfwTerminate();
+        GATE_LOG_INFO("Window destoyed");
     }
 
 }

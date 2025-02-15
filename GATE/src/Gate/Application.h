@@ -2,6 +2,7 @@
 
 #include <memory>
 #include "Gate/Utils/Logger.h"
+#include "Gate/Events/EventManager.h"
 
 namespace Gate {
 
@@ -13,11 +14,14 @@ namespace Gate {
         static Application* Get();
         Application(Application& obj) = delete;
         
-        virtual void Init() = 0;
+        void Init();
         virtual void Step() = 0;
         virtual const char* GetPlatformName() = 0;
         
         inline std::unique_ptr<Logger>& GetLogger() { return m_Logger; }
+        inline std::unique_ptr<EventManager>& GetEventManager() { return m_EventManager; }
+        
+        virtual ~Application();
         
     private:
         
@@ -25,9 +29,12 @@ namespace Gate {
         
     protected:
         Application();
-        virtual ~Application();
         
         std::unique_ptr<Logger> m_Logger;
+        std::unique_ptr<EventManager> m_EventManager;
+        
+        virtual void InitInternal() = 0;
+        virtual std::unique_ptr<Logger> CreateLogger() = 0;
     };
 
 
