@@ -10,7 +10,8 @@ namespace Gate {
         WindowClose,
         MouseButtonPressed,
         MouseButtonReleased,
-        MouseMoved
+        MouseMoved,
+        ScreenTouchedEvent,
         
     };
 
@@ -60,6 +61,28 @@ namespace Gate {
         inline const char * GetName() const override { return "MouseButtonPressed"; };
     private:
         int m_Button;
+    };
+
+    class ScreenTouchedEvent : public Event {
+    public:
+        
+        ScreenTouchedEvent(double x, double y) : m_XPos(x), m_YPos(y) {}
+        
+        inline double GetXPos() const { return m_XPos; };
+        inline double GetYPos() const { return m_YPos; };
+        
+        std::string ToString() const override {
+            std::stringstream ss;
+            ss << GetName() << " (" << GetXPos() << "|" << GetYPos() << ")";
+            return ss.str();
+        }
+        
+        inline EventType GetType() override { return EventType::ScreenTouchedEvent; };
+        inline const char * GetName() const override { return "ScreenTouchedEvent"; };
+
+    private:
+        double m_XPos;
+        double m_YPos;
     };
 
 
