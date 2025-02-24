@@ -7,7 +7,7 @@ project "MacSandbox"
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-    dependson { "GATE", "GLFW" } -- Ensure GATE builds first
+    dependson { "GATE", "Glad", "GLFW" } -- Ensure GATE builds first
 
     files 
     { 
@@ -18,11 +18,15 @@ project "MacSandbox"
     includedirs
     {
         "../GATE/src",
-        "../GATE/vendor/glm"
+        "../GATE/vendor/glm",
+        "../GATE/vendor/GLFW/source/include",
+        "../GATE/vendor/Glad/include",
     }
 
     externalincludedirs { 
-        "../GATE/vendor/glm"
+        "../GATE/vendor/glm",
+        "../GATE/vendor/GLFW/source/include",
+        "../GATE/vendor/Glad/include",
     }
 
     libdirs { 
@@ -34,6 +38,7 @@ project "MacSandbox"
         "GATE",
         "OpenGL.framework",
         "GLFW",
+        "Glad",
         "Cocoa.framework",
         "IOKit.framework",
         "CoreFoundation.framework",

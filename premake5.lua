@@ -10,6 +10,7 @@ workspace "GATE"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+include "GATE/vendor/GLFW"
+include "GATE/vendor/Glad"
 include "GATE"
 include "MacSandbox"
-include "GATE/vendor/GLFW"

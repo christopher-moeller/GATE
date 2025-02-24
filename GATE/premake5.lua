@@ -7,6 +7,10 @@ project "GATE"
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+    defines {
+        "GLFW_INCLUDE_NONE"
+    }
+
     files 
     { 
         "src/**.h", 
@@ -17,17 +21,26 @@ project "GATE"
     {
         "src",
         "vendor/GLFW/source/include",
+        "vendor/Glad/include",
         "vendor/glm"
     }
 
     externalincludedirs { 
         "vendor/GLFW/source/include",
+        "vendor/Glad/include",
         "vendor/glm"
     }
 
     libdirs { 
         "bin/" .. outputdir .. "/GATE"
      }
+
+     links
+    {
+        "OpenGL.framework",
+        "GLFW",
+        "Glad"
+    }
 
 
     filter "system:macosx"
