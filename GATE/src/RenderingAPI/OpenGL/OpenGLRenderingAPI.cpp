@@ -1,13 +1,13 @@
-#include "OpenGLExample.h"
+#include "OpenGLRenderingAPI.h"
 
-#include <iostream>
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "Gate/Base.h"
+#include <iostream>
 
 namespace Gate {
 
-    void OpenGLExample::Init() {
+    void OpenGLRenderingAPI::Init() {
         
         if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
             std::cout << "Failed to initialize GLAD" << std::endl;
@@ -93,12 +93,13 @@ namespace Gate {
         
         glUseProgram(shaderProgram);
         glBindVertexArray(VAO);
+        
+        
     }
 
-    void OpenGLExample::Draw() {
+    void OpenGLRenderingAPI::DrawExample() {
         glClear(GL_COLOR_BUFFER_BIT);
         glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
         glDrawArrays(GL_TRIANGLES, 0, 3);
     }
-
 }

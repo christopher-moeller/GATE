@@ -10,7 +10,7 @@ namespace Gate {
     }
 
     void AndroidApplication::Step() {
-        GATE_LOG_INFO("Android Step");
+        m_Renderer->DrawExample();
     }
 
     std::unique_ptr<Logger> AndroidApplication::CreateLogger() {

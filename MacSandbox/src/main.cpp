@@ -2,8 +2,6 @@
 #include "Utils/MacOSUtils.h"
 #include <unistd.h>
 
-#include "Gate/Example/OpenGLExample.h"
-
 
 int main() {
     
@@ -19,13 +17,10 @@ int main() {
         isRunning = false;
         return false;
     });
-    
-    Gate::OpenGLExample openGlExample;
-    openGlExample.Init();
+
     
     while (isRunning) {
         app->Step();
-        openGlExample.Draw();
     }
     
     delete app;

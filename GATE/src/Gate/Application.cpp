@@ -21,6 +21,8 @@
 
 #endif
 
+#include "RenderingAPI/OpenGL/OpenGLRenderingAPI.h"
+
 
 namespace Gate {
 
@@ -34,6 +36,11 @@ namespace Gate {
     Application* Application::Create() {
         GATE_ASSERT(s_Instance == nullptr, "Instance already created");
         s_Instance = static_cast<Application*>(new APPLICATION_CLASS());
+        
+        RenderingAPI* renderingAPI = new OpenGLRenderingAPI();
+        Renderer* renderer = new Renderer(renderingAPI);
+        
+        s_Instance->SetRenderer(renderer);
         return s_Instance;
     }
 
@@ -55,6 +62,7 @@ namespace Gate {
         m_Logger = CreateLogger();
         GATE_LOG_INFO("Application for platform {} created", s_Instance->GetPlatformName());
         InitInternal();
+        m_Renderer->Init();
     }
 
 }
