@@ -29,15 +29,13 @@ int main() {
         "{\n"
         "   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
         "}\n\0";
-    
-    auto renderingAPI = app->GetRenderer()->GetRenderingApi();
-    
+        
     std::shared_ptr<Gate::Shader> shader;
-    shader.reset(renderingAPI->CreateShader(vertexShaderSource, fragmentShaderSource));
+    shader.reset(app->GetRenderer()->CreateShader(vertexShaderSource, fragmentShaderSource));
     shader->Compile();
     
     std::shared_ptr<Gate::VertexArray> vertexArray;
-    vertexArray.reset(renderingAPI->CreateVertexArray());
+    vertexArray.reset(app->GetRenderer()->CreateVertexArray());
     
     float vertices[] = {
         -0.5f, -0.5f, 0.0f, // left
@@ -47,7 +45,7 @@ int main() {
     
     
     std::shared_ptr<Gate::VertexBuffer> vertexBuffer;
-    vertexBuffer.reset(renderingAPI->CreateVertexBuffer(vertices, sizeof(vertices)));
+    vertexBuffer.reset(app->GetRenderer()->CreateVertexBuffer(vertices, sizeof(vertices)));
     Gate::BufferLayout layout = {
                 { Gate::ShaderDataType::Float3, "a_Pos" }
             };
@@ -56,15 +54,16 @@ int main() {
     
     uint32_t indices[3] = { 0, 1, 2 };
     std::shared_ptr<Gate::IndexBuffer> indexBuffer;
-    indexBuffer.reset(renderingAPI->CreateIndexBuffer(indices, sizeof(indices) / sizeof(uint32_t)));
+    indexBuffer.reset(app->GetRenderer()->CreateIndexBuffer(indices, sizeof(indices) / sizeof(uint32_t)));
     vertexArray->SetIndexBuffer(indexBuffer);
     
     vertexArray->Unbind();
 
     
     while (isRunning) {
-        app->Step();
+        app->GetRenderer()->ClearColor({1.0f, 0.0f, 0.0f, 1.0f});
         app->GetRenderer()->Submit(shader, vertexArray);
+        app->Step();
     }
     
     delete app;
