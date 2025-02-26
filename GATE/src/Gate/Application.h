@@ -3,7 +3,6 @@
 #include <memory>
 #include "Gate/Utils/Logger.h"
 #include "Gate/Events/EventManager.h"
-#include "Gate/Rendering/RenderingAPI.h"
 #include "Gate/Rendering/Renderer.h"
 
 namespace Gate {

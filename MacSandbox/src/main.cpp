@@ -1,6 +1,5 @@
 #include "Gate.h"
 #include "Utils/MacOSUtils.h"
-#include <unistd.h>
 
 
 int main() {
