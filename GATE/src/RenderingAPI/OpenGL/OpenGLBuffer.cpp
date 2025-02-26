@@ -1,6 +1,6 @@
 #include "OpenGLBuffer.h"
 
-#include "OpenGL.h"
+#include "OpenGLContext.h"
 
 namespace Gate {
 

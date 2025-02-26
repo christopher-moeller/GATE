@@ -1,6 +1,9 @@
 #pragma once
 
 #include "RenderingAPI.h"
+#include "Shader.h"
+#include "VertexArray.h"
+
 #include <memory>
 
 namespace Gate {
@@ -9,10 +12,12 @@ namespace Gate {
     public:
         Renderer(RenderingAPI* renderingAPI);
         void Init();
-        void DrawExample();
+        void Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray);
         // void Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertexArray, const glm::mat4& transform = glm::mat4(1.0f));
+        
+        inline std::shared_ptr<RenderingAPI>& GetRenderingApi() { return m_RenderingAPI; }
     private:
-        std::unique_ptr<RenderingAPI> m_RenderingAPI;
+        std::shared_ptr<RenderingAPI> m_RenderingAPI;
     };
 
 }

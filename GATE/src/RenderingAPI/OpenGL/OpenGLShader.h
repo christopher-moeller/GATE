@@ -1,6 +1,6 @@
 #pragma once
 #include "Gate/Rendering/Shader.h"
-#include "OpenGL.h"
+#include "OpenGLContext.h"
 
 namespace Gate {
 

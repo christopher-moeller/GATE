@@ -15,7 +15,6 @@ namespace Gate {
 
     void MacOSApplication::Step() {
         m_Window->PollEvents();
-        m_Renderer->DrawExample();
         m_Window->SwappBuffers();
     }
 

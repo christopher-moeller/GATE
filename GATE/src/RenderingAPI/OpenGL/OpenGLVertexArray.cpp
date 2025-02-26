@@ -2,7 +2,7 @@
 
 #include "Gate/Base.h"
 #include "Gate/Rendering/VertexArray.h"
-#include "OpenGL.h"
+#include "OpenGLContext.h"
 
 
 namespace Gate {

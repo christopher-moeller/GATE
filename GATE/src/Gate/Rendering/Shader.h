@@ -8,6 +8,8 @@ namespace Gate {
     public:
         Shader(const std::string& vertexShaderSource, const std::string& fragmentShaderSource) : m_VertexShaderSource(vertexShaderSource), m_FragmentShaderSource(fragmentShaderSource) {}
         
+        virtual ~Shader() = default;
+        
         virtual void Compile() = 0;
         virtual bool IsCompiled() = 0;
         

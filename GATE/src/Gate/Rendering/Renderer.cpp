@@ -10,8 +10,8 @@ namespace Gate {
         m_RenderingAPI->Init();
     }
 
-    void Renderer::DrawExample() {
-        m_RenderingAPI->DrawExample();
+    void Renderer::Submit(const std::shared_ptr<Shader> &shader, const std::shared_ptr<VertexArray> &vertexArray) {
+        m_RenderingAPI->Draw(shader, vertexArray);
     }
 
 }

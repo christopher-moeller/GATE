@@ -23,6 +23,7 @@ namespace Gate {
         inline std::unique_ptr<EventManager>& GetEventManager() { return m_EventManager; }
         
         inline void SetRenderer(Renderer* renderer) { m_Renderer.reset(renderer); }
+        inline std::unique_ptr<Renderer>& GetRenderer() { return m_Renderer; };
         
         virtual ~Application();
         
