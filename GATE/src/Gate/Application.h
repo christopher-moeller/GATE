@@ -4,6 +4,7 @@
 #include "Gate/Utils/Logger.h"
 #include "Gate/Events/EventManager.h"
 #include "Gate/Rendering/Renderer.h"
+#include "Gate/Camera/CameraController.h"
 
 namespace Gate {
 
@@ -23,7 +24,8 @@ namespace Gate {
         inline std::unique_ptr<EventManager>& GetEventManager() { return m_EventManager; }
         
         inline void SetRenderer(Renderer* renderer) { m_Renderer.reset(renderer); }
-        inline std::unique_ptr<Renderer>& GetRenderer() { return m_Renderer; };
+        
+        inline std::shared_ptr<Renderer>& GetRenderer() { return m_Renderer; };
         
         virtual ~Application();
         
@@ -36,7 +38,7 @@ namespace Gate {
         
         std::unique_ptr<Logger> m_Logger;
         std::unique_ptr<EventManager> m_EventManager;
-        std::unique_ptr<Renderer> m_Renderer;
+        std::shared_ptr<Renderer> m_Renderer;
         
         virtual void InitInternal() = 0;
         virtual std::unique_ptr<Logger> CreateLogger() = 0;

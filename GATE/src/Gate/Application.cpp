@@ -41,6 +41,7 @@ namespace Gate {
         Renderer* renderer = new Renderer(renderingAPI);
         
         s_Instance->SetRenderer(renderer);
+        
         return s_Instance;
     }
 

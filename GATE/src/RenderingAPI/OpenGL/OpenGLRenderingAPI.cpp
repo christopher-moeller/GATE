@@ -10,6 +10,7 @@ namespace Gate {
     void OpenGLRenderingAPI::Init() {
         
         OpenGLContext::Init();
+        glEnable(GL_DEPTH_TEST);
     }
 
     void OpenGLRenderingAPI::Draw(const std::shared_ptr<Shader> &shader, const std::shared_ptr<VertexArray> &vertexArray) {

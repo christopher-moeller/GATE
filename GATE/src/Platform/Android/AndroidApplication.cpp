@@ -1,6 +1,7 @@
 #include "AndroidApplication.h"
 #include "Utils/AndroidLogger.h"
 #include "Gate/Base.h"
+#include "Gate/Camera/StandardCamera.h"
 
 
 namespace Gate {

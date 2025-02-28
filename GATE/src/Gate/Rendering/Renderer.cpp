@@ -10,15 +10,6 @@ namespace Gate {
         m_RenderingAPI->Init();
     }
 
-    void Renderer::Submit(const std::shared_ptr<Shader> &shader, const std::shared_ptr<VertexArray> &vertexArray) {
-        m_RenderingAPI->Draw(shader, vertexArray);
-    }
-
-    void Renderer::ClearColor(const glm::vec4 &color) {
-        m_RenderingAPI->SetClearColor(color);
-        m_RenderingAPI->Clear();
-    }
-
     void Renderer::OnTargetResize(uint32_t width, uint32_t height) {
         m_RenderingAPI->SetViewport(0, 0, width, height);
     }
@@ -35,6 +26,10 @@ namespace Gate {
     }
     Shader* Renderer::CreateShader(const std::string& vertexShaderSource, const std::string& fragmentShaderSource) {
         return m_RenderingAPI->CreateShader(vertexShaderSource, fragmentShaderSource);
+    }
+
+    Scene Renderer::NewScene(Camera* camera) {
+        return Scene(m_RenderingAPI, camera);
     }
 
 }

@@ -71,6 +71,33 @@ namespace Gate {
             WindowCloseEvent event;
             eventManager->PushEvent(event);
         });
+        
+        glfwSetKeyCallback(m_NativeWindow, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
+            EventManager* eventManager = (EventManager*) glfwGetWindowUserPointer(window);
+            
+            
+            switch (action) {
+                case GLFW_PRESS:
+                {
+                    KeyPressedEvent event(key, 0);
+                    eventManager->PushEvent(event);
+                    break;
+                }
+                case GLFW_RELEASE:
+                {
+                    KeyReleasedEvent event(key);
+                    eventManager->PushEvent(event);
+                    break;
+                }
+                case GLFW_REPEAT:
+                {
+                    KeyPressedEvent event(key, 1);
+                    eventManager->PushEvent(event);
+                    break;
+                }
+                    
+            }
+        });
          
     }
 

@@ -3,6 +3,7 @@
 #include "Gate/Utils/StdLogger.h"
 #include "Gate/Base.h"
 #include "Rendering/MacOSWindow.h"
+#include "Gate/Camera/StandardCamera.h"
 
 namespace Gate {
 

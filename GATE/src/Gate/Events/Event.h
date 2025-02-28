@@ -12,6 +12,8 @@ namespace Gate {
         MouseButtonReleased,
         MouseMoved,
         ScreenTouchedEvent,
+        KeyPressedEvent,
+        KeyReleasedEvent
         
     };
 
@@ -83,6 +85,53 @@ namespace Gate {
     private:
         double m_XPos;
         double m_YPos;
+    };
+
+    class KeyEvent : public Event {
+    public:
+        inline int GetKeyCode() const { return m_Keycode; }
+        
+    protected:
+        KeyEvent(int keycode) : m_Keycode(keycode) {}
+        
+        int m_Keycode;
+    };
+
+    class KeyPressedEvent : public KeyEvent {
+        
+    public:
+        KeyPressedEvent(int keyCode, bool isRepeat = false) : KeyEvent(keyCode), m_IsRepeat(isRepeat) {}
+        
+        bool IsRepeat() const { return m_IsRepeat; }
+        
+        inline EventType GetType() override { return EventType::KeyPressedEvent; }
+        const char* GetName() const override { return "KeyPressedEvent"; }
+        
+        std::string ToString() const override {
+            std::stringstream ss;
+            ss << "KeyPressedEvent: " << m_Keycode << " (repeat = " << m_IsRepeat << ")";
+            return ss.str();
+        }
+        
+    private:
+        bool m_IsRepeat;
+        
+    };
+
+    class KeyReleasedEvent : public KeyEvent {
+        
+    public:
+        KeyReleasedEvent(int keyCode) : KeyEvent(keyCode) {}
+        
+        std::string ToString() const override {
+            std::stringstream ss;
+            ss << "KeyReleasedEvent: " << m_Keycode;
+            return ss.str();
+        }
+        
+        EventType GetType() override { return EventType::KeyReleasedEvent; }
+        const char* GetName() const override { return "KeyReleased"; }
+        
     };
 
 
