@@ -9,6 +9,8 @@ namespace Gate {
         ComputerCameraController(Camera* camera) : CameraController(camera) {}
         
         void Init() override;
+        
+        void UpdateOnStep(CameraControllerAppContext& context) override;
     };
 
 }

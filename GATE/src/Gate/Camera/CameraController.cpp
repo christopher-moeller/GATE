@@ -8,4 +8,8 @@ namespace Gate {
         
     }
 
+    bool CameraControllerAppContext::IsKeyPressed(int keyCode) {
+        return m_EventManager->IsKeyPressed(keyCode);
+    }
+
 }

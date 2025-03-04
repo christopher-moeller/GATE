@@ -26,4 +26,15 @@ namespace Gate {
         m_Listeners.at(type).push_back(fun);
     }
 
+    bool EventManager::IsKeyPressed(int keyCode) {
+        if(m_KeyPressedPollCallback) {
+            return m_KeyPressedPollCallback(keyCode);
+        }
+        return false;
+    }
+
+    void EventManager::SetKeyPressedPollCallback(const std::function<bool (int &)> &fun) {
+        m_KeyPressedPollCallback = fun;
+    }
+
 }

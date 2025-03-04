@@ -41,6 +41,12 @@ namespace Gate {
         glfwMakeContextCurrent(m_NativeWindow);
         
         glfwSetWindowUserPointer(m_NativeWindow, Application::Get()->GetEventManager().get());
+        GLFWwindow* glfwwindow = m_NativeWindow;
+        
+        Application::Get()->GetEventManager()->SetKeyPressedPollCallback([glfwwindow](int keycode) {
+            auto state = glfwGetKey(glfwwindow, static_cast<int32_t>(keycode));
+            return state == GLFW_PRESS;
+        });
         
         glfwSetMouseButtonCallback(m_NativeWindow, [](GLFWwindow* window, int button, int action, int mods) {
             
