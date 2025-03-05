@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Gate/Application.h"
-#include "Gate/Rendering/Window.h"
+#include "Rendering/MacOSWindow.h"
 
 namespace Gate {
 
@@ -11,9 +11,11 @@ namespace Gate {
         void Step() override;
         
         inline const char* GetPlatformName() override { return "MacOS"; };
+        
+        float GetTime() override;
 
     private:
-        std::unique_ptr<Window> m_Window;
+        std::unique_ptr<MacOSWindow> m_Window;
         
     protected:
         void InitInternal() override;

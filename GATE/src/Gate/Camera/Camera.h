@@ -10,8 +10,6 @@ namespace Gate {
         virtual glm::mat4 GetProjectionMatrix() = 0;
         virtual glm::mat4 GetViewProjectionMatrix() { return this->GetProjectionMatrix() * this->GetViewMatrix(); }
         
-    private:
-        const char* name = "Hallo Cam!";
     };
 
 }

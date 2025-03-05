@@ -15,8 +15,6 @@ public:
 
     void SetPosition(const glm::vec3& position);
     void SetRotation(float yaw, float pitch);
-    void Move(const glm::vec3& deltaPosition);
-    void Rotate(float yawOffset, float pitchOffset);
 
     glm::vec3 GetPosition() const { return m_Position; }
     glm::vec3 GetFront() const { return m_Front; }

@@ -30,16 +30,14 @@ void StandardCamera::SetRotation(float yaw, float pitch) {
     UpdateCameraVectors();
 }
 
-void StandardCamera::Move(const glm::vec3& deltaPosition) {
-    m_Position += deltaPosition;
-}
-
+/*
 void StandardCamera::Rotate(float yawOffset, float pitchOffset) {
     m_Yaw += yawOffset;
     m_Pitch += pitchOffset;
     m_Pitch = std::clamp(m_Pitch, -89.0f, 89.0f);
     UpdateCameraVectors();
 }
+ */
 
 void StandardCamera::UpdateCameraVectors() {
     glm::vec3 front;

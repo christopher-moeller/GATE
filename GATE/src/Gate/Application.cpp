@@ -66,4 +66,11 @@ namespace Gate {
         m_Renderer->Init();
     }
 
+    Timestep Application::CalculateNextTimestep() {
+        float time = GetTime();
+        Timestep timestep = time - m_LastFrameTime;
+        m_LastFrameTime = time;
+        return timestep;
+    }
+
 }

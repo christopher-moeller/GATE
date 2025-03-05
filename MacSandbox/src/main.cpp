@@ -90,17 +90,19 @@ int main() {
     
     Gate::StandardCamera* standardCamera = new Gate::StandardCamera(fov, aspectRatio, nearPlane, farPlane);
     
-    Gate::ComputerCameraController cameraController(standardCamera);
+    Gate::StandardCameraController cameraController(standardCamera, Gate::DeviceType::DESKTOP_COMPUTER);
     cameraController.Init();
     
     while (isRunning) {
+        
+        Gate::Timestep timestep = app->CalculateNextTimestep();
         
         Gate::Scene scene = app->GetRenderer()->NewScene(standardCamera);
         scene.ClearColor({1.0f, 0.0f, 0.0f, 1.0f});
         scene.Submit(shader, vertexArray);
         scene.Render();
         
-        Gate::CameraControllerAppContext context(app->GetEventManager().get());
+        Gate::CameraControllerAppContext context(app->GetEventManager().get(), timestep);
         cameraController.UpdateOnStep(context);
 
         app->Step();

@@ -5,6 +5,7 @@
 #include "Gate/Events/EventManager.h"
 #include "Gate/Rendering/Renderer.h"
 #include "Gate/Camera/CameraController.h"
+#include "Gate/Utils/Timestep.h"
 
 namespace Gate {
 
@@ -19,6 +20,7 @@ namespace Gate {
         void Init();
         virtual void Step() = 0;
         virtual const char* GetPlatformName() = 0;
+        virtual float GetTime() = 0;
         
         inline std::unique_ptr<Logger>& GetLogger() { return m_Logger; }
         inline std::unique_ptr<EventManager>& GetEventManager() { return m_EventManager; }
@@ -26,6 +28,9 @@ namespace Gate {
         inline void SetRenderer(Renderer* renderer) { m_Renderer.reset(renderer); }
         
         inline std::shared_ptr<Renderer>& GetRenderer() { return m_Renderer; };
+        
+        Timestep CalculateNextTimestep();
+        
         
         virtual ~Application();
         
@@ -42,6 +47,9 @@ namespace Gate {
         
         virtual void InitInternal() = 0;
         virtual std::unique_ptr<Logger> CreateLogger() = 0;
+        
+        
+        float m_LastFrameTime = 0.0f;
     };
 
 

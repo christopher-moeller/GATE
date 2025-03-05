@@ -4,7 +4,7 @@
 namespace Gate {
 
     void EventManager::PushEvent(Event &event) {
-        GATE_LOG_INFO("{}", event);
+        //GATE_LOG_INFO("{}", event);
         
         if(m_Listeners.find(event.GetType()) == m_Listeners.end()) {
             return;

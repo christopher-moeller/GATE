@@ -121,4 +121,8 @@ namespace Gate {
         GATE_LOG_INFO("Window destoyed");
     }
 
+    float MacOSWindow::GetTime() {
+        return glfwGetTime();
+    }
+
 }

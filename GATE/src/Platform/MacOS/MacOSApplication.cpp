@@ -23,4 +23,8 @@ namespace Gate {
         return std::make_unique<StdLogger>();
     }
 
+    float MacOSApplication::GetTime() {
+        return m_Window->GetTime();
+    }
+
 }

@@ -15,6 +15,8 @@ namespace Gate {
         virtual void SwappBuffers() override;
         virtual void Destroy() override;
         
+        float GetTime();
+        
     private:
         GLFWwindow* m_NativeWindow;
     };
