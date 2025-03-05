@@ -1,5 +1,6 @@
 #include "Application.h"
 #include "Gate/Base.h"
+#include <chrono>
 
 #ifdef GATE_PLATFORM_MACOS
 
@@ -71,6 +72,13 @@ namespace Gate {
         Timestep timestep = time - m_LastFrameTime;
         m_LastFrameTime = time;
         return timestep;
+    }
+
+    float Application::GetTime() {
+        using namespace std::chrono;
+        static auto start = steady_clock::now();
+        auto now = steady_clock::now();
+        return duration<float>(now - start).count();
     }
 
 }

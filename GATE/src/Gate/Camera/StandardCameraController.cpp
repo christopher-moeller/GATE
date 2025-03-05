@@ -14,18 +14,52 @@ namespace Gate {
 
     void StandardCameraController::UpdateOnStepForDesktopComputer(CameraControllerAppContext& context) {
         
-        glm::vec3 position = m_StandardCamera->GetPosition();
+        glm::vec3 frontDirection = m_StandardCamera->GetFront();
+        glm::vec3 rightDirection = m_StandardCamera->GetRight();
         
-        // * m_CameraTranslationSpeed * ts
+        glm::vec3 newPosition = m_StandardCamera->GetPosition();
+        float currentY = newPosition.y;
+        
+        float translationVelocity = m_CameraTranslationSpeed * context.GetTimestep();
         
         if(context.IsKeyPressed(GATE_KEY_UP)) {
-            position += glm::vec3(0.0f, 0.0f, m_CameraTranslationSpeed * context.GetTimestep() * -1.0f);
+            newPosition += frontDirection * translationVelocity;
+            newPosition.y = currentY;
         }
         if(context.IsKeyPressed(GATE_KEY_DOWN)) {
-            position += glm::vec3(0.0f, 0.0f, m_CameraTranslationSpeed * context.GetTimestep());
+            newPosition -= frontDirection * translationVelocity;
+            newPosition.y = currentY;
+        }
+        if(context.IsKeyPressed(GATE_KEY_LEFT)) {
+            newPosition -= rightDirection * translationVelocity;
+            newPosition.y = currentY;
+        }
+        if(context.IsKeyPressed(GATE_KEY_RIGHT)) {
+            newPosition += rightDirection * translationVelocity;
+            newPosition.y = currentY;
         }
         
-        m_StandardCamera->SetPosition(position);
+        m_StandardCamera->SetPosition(newPosition);
+        
+        float rotationVelocity = m_CameraRotationSpeed * context.GetTimestep();
+        float pitch = m_StandardCamera->GetPitch();
+        float yaw = m_StandardCamera->GetYaw();
+        
+        if(context.IsKeyPressed(GATE_KEY_W)) {
+            pitch += 1.0f * rotationVelocity;
+        }
+        if(context.IsKeyPressed(GATE_KEY_S)) {
+            pitch -= 1.0f * rotationVelocity;
+        }
+        if(context.IsKeyPressed(GATE_KEY_D)) {
+            yaw += 1.0f * rotationVelocity;
+        }
+        if(context.IsKeyPressed(GATE_KEY_A)) {
+            yaw -= 1.0f * rotationVelocity;
+        }
+        
+        m_StandardCamera->SetRotation(yaw, pitch);
+        
     }
 
 }

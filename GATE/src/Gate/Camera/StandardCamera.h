@@ -18,6 +18,9 @@ public:
 
     glm::vec3 GetPosition() const { return m_Position; }
     glm::vec3 GetFront() const { return m_Front; }
+    glm::vec3 GetRight() const { return m_Right; }
+    float GetPitch() const { return m_Pitch; }
+    float GetYaw() const { return m_Yaw; }
     
 private:
     void UpdateCameraVectors();

@@ -12,6 +12,7 @@ namespace Gate {
     private:
         StandardCamera* m_StandardCamera;
         float m_CameraTranslationSpeed = 5.0f;
+        float m_CameraRotationSpeed = 45.0f;
     protected:
         void InitForDesktopComputer() override;
         void UpdateOnStepForDesktopComputer(CameraControllerAppContext &context) override;

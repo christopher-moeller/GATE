@@ -20,7 +20,7 @@ namespace Gate {
         void Init();
         virtual void Step() = 0;
         virtual const char* GetPlatformName() = 0;
-        virtual float GetTime() = 0;
+        virtual float GetTime();
         
         inline std::unique_ptr<Logger>& GetLogger() { return m_Logger; }
         inline std::unique_ptr<EventManager>& GetEventManager() { return m_EventManager; }
