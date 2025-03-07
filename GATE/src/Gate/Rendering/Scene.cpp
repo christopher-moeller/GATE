@@ -13,6 +13,10 @@ namespace Gate {
         m_RenderingAPI->Clear();
     }
 
+    void Scene::Submit(RenderingObject& object) {
+        Submit(object.GetShader(), object.GetVertexArray());
+    }
+
     void Scene::Submit(const std::shared_ptr<Shader> &shader, const std::shared_ptr<VertexArray> &vertexArray) {
         
         glm::mat4 transform(1.0f);

@@ -1,6 +1,7 @@
 #include "MacOSWindow.h"
 #include <stdio.h>
 #include "Gate/Base.h"
+#include "RenderingAPI/OpenGL/OpenGLContext.h"
 
 namespace Gate {
 
@@ -27,11 +28,13 @@ namespace Gate {
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // Specific for OpenGL
-        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE); // Specific for MacOS
+        //glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE); // Specific for MacOS
          
+        int width = Application::Get()->GetWidth();
+        int height = Application::Get()->GetHeight();
 
         // Create a GLFW window
-        m_NativeWindow = glfwCreateWindow(1200, 800, "GATE Window", nullptr, nullptr);
+        m_NativeWindow = glfwCreateWindow(width, height, "GATE Window", nullptr, nullptr);
         if (!m_NativeWindow) {
             GATE_LOG_ERROR("Failed to create GLFW window");
             glfwTerminate();
@@ -103,6 +106,17 @@ namespace Gate {
                 }
                     
             }
+        });
+        
+        glfwSetWindowSizeCallback(m_NativeWindow, [](GLFWwindow* window, int width, int height) {
+            
+        });
+        
+        glfwSetFramebufferSizeCallback(m_NativeWindow, [](GLFWwindow* window, int width, int height) {
+            EventManager* eventManager = (EventManager*) glfwGetWindowUserPointer(window);
+            
+            ApplicationResizeEvent event(width, height);
+            eventManager->PushEvent(event);
         });
          
     }

@@ -34,9 +34,10 @@ namespace Gate {
         return s_Instance;
     }
 
-    Application* Application::Create() {
+    Application* Application::Create(int width, int height) {
         GATE_ASSERT(s_Instance == nullptr, "Instance already created");
         s_Instance = static_cast<Application*>(new APPLICATION_CLASS());
+        s_Instance->SetWidthAndHeight(width, height);
         
         RenderingAPI* renderingAPI = new OpenGLRenderingAPI();
         Renderer* renderer = new Renderer(renderingAPI);
@@ -63,6 +64,16 @@ namespace Gate {
     void Application::Init() {
         m_Logger = CreateLogger();
         GATE_LOG_INFO("Application for platform {} created", s_Instance->GetPlatformName());
+        
+        m_EventManager->AddListener(EventType::ApplicationResizeEvent, [this](Gate::Event& event) {
+            ApplicationResizeEvent* resizeEvent = static_cast<ApplicationResizeEvent*>(&event);
+            this->m_Width = resizeEvent->GetWidth();
+            this->m_Height = resizeEvent->GetHeight();
+            
+            this->GetRenderer()->OnTargetResize(this->m_Width, this->m_Height);
+            return false;
+        });
+        
         InitInternal();
         m_Renderer->Init();
     }
@@ -80,5 +91,12 @@ namespace Gate {
         auto now = steady_clock::now();
         return duration<float>(now - start).count();
     }
+
+
+    void Application::SetWidthAndHeight(int width, int height) {
+        m_Width = width;
+        m_Height = height;
+    }
+
 
 }

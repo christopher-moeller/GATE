@@ -12,7 +12,7 @@ namespace Gate {
     class Application
     {
     public:
-        static Application* Create();
+        static Application* Create(int width, int height);
         static void Destroy();
         static Application* Get();
         Application(Application& obj) = delete;
@@ -31,6 +31,8 @@ namespace Gate {
         
         Timestep CalculateNextTimestep();
         
+        inline int GetWidth() { return m_Width; }
+        inline int GetHeight() { return m_Height; }
         
         virtual ~Application();
         
@@ -47,9 +49,12 @@ namespace Gate {
         
         virtual void InitInternal() = 0;
         virtual std::unique_ptr<Logger> CreateLogger() = 0;
+        void SetWidthAndHeight(int width, int height);
         
         
         float m_LastFrameTime = 0.0f;
+        
+        int m_Width, m_Height;
     };
 
 

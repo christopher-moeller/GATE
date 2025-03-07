@@ -8,6 +8,7 @@ namespace Gate {
     {
         None = 0,
         WindowClose,
+        ApplicationResizeEvent,
         MouseButtonPressed,
         MouseButtonReleased,
         MouseMoved,
@@ -132,6 +133,26 @@ namespace Gate {
         EventType GetType() override { return EventType::KeyReleasedEvent; }
         const char* GetName() const override { return "KeyReleased"; }
         
+    };
+
+    class ApplicationResizeEvent : public Event {
+    public:
+        ApplicationResizeEvent(int width, int height) : m_Width(width), m_Height(height) {}
+        
+        inline int GetWidth() { return m_Width; }
+        inline int GetHeight() { return m_Height; }
+        
+        std::string ToString() const override {
+            std::stringstream ss;
+            ss << "ApplicationResizeEvent: " << m_Width << ", " << m_Height;
+            return ss.str();
+        }
+        
+        EventType GetType() override { return EventType::ApplicationResizeEvent; }
+        const char* GetName() const override { return "ApplicationResizeEvent"; }
+        
+    private:
+        int m_Width, m_Height;
     };
 
 

@@ -8,6 +8,7 @@ namespace Gate {
 
 class StandardCamera : public Camera {
 public:
+    StandardCamera(int width, int height);
     StandardCamera(float fov, float aspectRatio, float nearPlane, float farPlane);
 
     glm::mat4 GetViewMatrix() override;
@@ -15,6 +16,7 @@ public:
 
     void SetPosition(const glm::vec3& position);
     void SetRotation(float yaw, float pitch);
+    void SetAspectRatio(float aspectRatio);
 
     glm::vec3 GetPosition() const { return m_Position; }
     glm::vec3 GetFront() const { return m_Front; }
