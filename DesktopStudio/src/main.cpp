@@ -4,13 +4,8 @@
 #include "Utils/MacOSUtils.h"
 #endif
 
-#include "Platform/MacOS/MacOSApplication.h"
-
-#include <GLFW/glfw3.h>
-
-#include "imgui.h"
-#include "imgui_impl_glfw.h"
-#include "imgui_impl_opengl3.h"
+#include "GUI/ImGuiContext.h"
+#include "GUI/MainImGuiLayer.h"
 
 
 int main() {
@@ -23,22 +18,7 @@ int main() {
     Gate::Application* app = Gate::Application::Get();
     app->Init();
     
-    {
-        Gate::MacOSApplication* macApp = static_cast<Gate::MacOSApplication*>(app);
-        GLFWwindow* glfwWindow = macApp->GetMacOSWindow()->GetNativeWindow();
-        
-        IMGUI_CHECKVERSION();
-        ImGui::CreateContext();
-        ImGuiIO& io = ImGui::GetIO();
-        (void)io;
-        
-        // Setup ImGui style
-        ImGui::StyleColorsDark();
-        
-        ImGui_ImplGlfw_InitForOpenGL(glfwWindow, true);
-        ImGui_ImplOpenGL3_Init("#version 410");
-        
-    }
+    ImGuiContext::Init(app);
     
     bool isRunning = true;
     
@@ -54,6 +34,8 @@ int main() {
     Gate::StandardCameraController cameraController(standardCamera, Gate::DeviceType::DESKTOP_COMPUTER);
     cameraController.Init();
     
+    MainImGuiLayer imGuiLayer;
+    
     while (isRunning) {
         
         Gate::Timestep timestep = app->CalculateNextTimestep();
@@ -66,16 +48,7 @@ int main() {
         Gate::CameraControllerAppContext context(app->GetEventManager().get(), timestep);
         cameraController.UpdateOnStep(context);
         
-        ImGui_ImplOpenGL3_NewFrame();
-        ImGui_ImplGlfw_NewFrame();
-        ImGui::NewFrame();
-        
-        ImGui::Begin("Test");
-        ImGui::Text("Hello World");
-        ImGui::End();
-        
-        ImGui::Render();
-        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+        imGuiLayer.Render();
 
         app->Step();
     }
