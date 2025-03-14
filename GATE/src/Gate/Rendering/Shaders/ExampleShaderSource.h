@@ -46,8 +46,7 @@ namespace Gate {
         
         ShaderSourceData GetOpenGLESShader() const override {
             
-            std::string vertexShaderSource = R"(
-                #version 300 es
+            std::string vertexShaderSource = R"(#version 300 es
 
                 precision mediump float;
 
@@ -69,8 +68,7 @@ namespace Gate {
 
             )";
 
-            std::string fragmentShaderSource = R"(
-                #version 300 es
+            std::string fragmentShaderSource = R"(#version 300 es
 
                 precision mediump float;
 

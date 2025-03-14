@@ -1,5 +1,5 @@
-project "MacSandbox"
-    location "MacSandbox"
+project "DesktopStudio"
+    location "DesktopStudio"
     kind "ConsoleApp"
     language "C++"
     cppdialect "C++17"
@@ -7,7 +7,7 @@ project "MacSandbox"
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-    dependson { "GATE", "Glad", "GLFW" } -- Ensure GATE builds first
+    dependson { "GATE", "Glad", "GLFW" }
 
     files 
     { 
@@ -23,12 +23,6 @@ project "MacSandbox"
         "../GATE/vendor/Glad/include",
     }
 
-    externalincludedirs { 
-        "../GATE/vendor/glm",
-        "../GATE/vendor/GLFW/source/include",
-        "../GATE/vendor/Glad/include",
-    }
-
     libdirs { 
         "bin/" .. outputdir .. "/GATE",
         "GATE/vendor/GLFW/bin/" .. outputdir .. "/GLFW"
@@ -36,18 +30,29 @@ project "MacSandbox"
     links
     {
         "GATE",
-        "OpenGL.framework",
         "GLFW",
-        "Glad",
-        "Cocoa.framework",
-        "IOKit.framework",
-        "CoreFoundation.framework",
-        "CoreVideo.framework",
-        "QuartzCore.framework"  -- Add this line to link QuartzCore
+        "Glad"
     }
 
     filter "system:macosx"
         defines { "GATE_PLATFORM_MACOS" }
+
+        externalincludedirs 
+        { 
+            "../GATE/vendor/glm",
+            "../GATE/vendor/GLFW/source/include",
+            "../GATE/vendor/Glad/include",
+        }
+
+        links
+        {
+            "OpenGL.framework",
+            "Cocoa.framework",
+            "IOKit.framework",
+            "CoreFoundation.framework",
+            "CoreVideo.framework",
+            "QuartzCore.framework"
+        }
 
     filter "system:windows"
         defines { "GATE_PLATFORM_WINDOWS" }
