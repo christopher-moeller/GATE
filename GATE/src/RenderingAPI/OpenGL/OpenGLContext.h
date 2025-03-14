@@ -1,5 +1,4 @@
 #pragma once
-
  
 #ifdef GATE_PLATFORM_MACOS
 #include <glad/glad.h>

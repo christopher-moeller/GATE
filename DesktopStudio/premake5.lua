@@ -7,7 +7,7 @@ project "DesktopStudio"
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-    dependson { "GATE", "Glad", "GLFW" }
+    dependson { "ImGui", "GATE", "Glad", "GLFW" }
 
     files 
     { 
@@ -21,6 +21,8 @@ project "DesktopStudio"
         "../GATE/vendor/glm",
         "../GATE/vendor/GLFW/source/include",
         "../GATE/vendor/Glad/include",
+        "vendor/ImGui/ImGui", 
+        "vendor/ImGui/ImGui/backends"
     }
 
     libdirs { 
@@ -31,7 +33,8 @@ project "DesktopStudio"
     {
         "GATE",
         "GLFW",
-        "Glad"
+        "Glad",
+        "ImGui",
     }
 
     filter "system:macosx"
@@ -42,6 +45,8 @@ project "DesktopStudio"
             "../GATE/vendor/glm",
             "../GATE/vendor/GLFW/source/include",
             "../GATE/vendor/Glad/include",
+            "vendor/ImGui/ImGui", 
+            "vendor/ImGui/ImGui/backends"
         }
 
         links

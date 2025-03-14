@@ -11,6 +11,8 @@ namespace Gate {
         void Step() override;
         
         inline const char* GetPlatformName() override { return "MacOS"; };
+        
+        inline MacOSWindow* GetMacOSWindow() { return m_Window.get();};
 
     private:
         std::unique_ptr<MacOSWindow> m_Window;
