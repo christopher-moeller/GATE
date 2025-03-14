@@ -5,6 +5,7 @@
 #include "VertexArray.h"
 #include "Scene.h"
 #include "Gate/Camera/Camera.h"
+#include "Gate/Rendering/Shaders/ShaderSource.h"
 
 #include <memory>
 
@@ -20,6 +21,7 @@ namespace Gate {
         IndexBuffer* CreateIndexBuffer(unsigned int* indices, unsigned int size);
         VertexArray* CreateVertexArray();
         Shader* CreateShader(const std::string& vertexShaderSource, const std::string& fragmentShaderSource);
+        Shader* CreateShader(const ShaderSource& shaderSource);
         
         Scene NewScene(Camera* camera);
 

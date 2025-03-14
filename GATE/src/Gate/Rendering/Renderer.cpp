@@ -1,4 +1,5 @@
 #include "Renderer.h"
+#include "Shaders/ShaderSource.h"
 
 namespace Gate {
 
@@ -27,7 +28,10 @@ namespace Gate {
     Shader* Renderer::CreateShader(const std::string& vertexShaderSource, const std::string& fragmentShaderSource) {
         return m_RenderingAPI->CreateShader(vertexShaderSource, fragmentShaderSource);
     }
-
+    Shader* Renderer::CreateShader(const ShaderSource& shaderSource) {
+        auto data = shaderSource.GetOpenGLShader();
+        return m_RenderingAPI->CreateShader(data.vertexShaderSource, data.fragmentShaderSource);
+    }
     Scene Renderer::NewScene(Camera* camera) {
         return Scene(m_RenderingAPI, camera);
     }
