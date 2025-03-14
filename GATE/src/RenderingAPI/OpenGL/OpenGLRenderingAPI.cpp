@@ -48,5 +48,16 @@ namespace Gate {
     Shader* OpenGLRenderingAPI::CreateShader(const std::string& vertexShaderSource, const std::string& fragmentShaderSource) {
         return new OpenGLShader(vertexShaderSource, fragmentShaderSource);
     }
+
+    Shader* OpenGLRenderingAPI::CreateShader(const ShaderSource &shaderSource) {
+        
+        #ifdef GATE_PLATFORM_ANDROID
+        auto data = shaderSource.GetOpenGLESShader();
+        #else
+        auto data = shaderSource.GetOpenGLShader();
+        #endif
+        
+        return CreateShader(data.vertexShaderSource, data.fragmentShaderSource);
+    }
  
 }

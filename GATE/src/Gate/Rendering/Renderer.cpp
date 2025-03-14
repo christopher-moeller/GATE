@@ -29,8 +29,7 @@ namespace Gate {
         return m_RenderingAPI->CreateShader(vertexShaderSource, fragmentShaderSource);
     }
     Shader* Renderer::CreateShader(const ShaderSource& shaderSource) {
-        auto data = shaderSource.GetOpenGLShader();
-        return m_RenderingAPI->CreateShader(data.vertexShaderSource, data.fragmentShaderSource);
+        return m_RenderingAPI->CreateShader(shaderSource);
     }
     Scene Renderer::NewScene(Camera* camera) {
         return Scene(m_RenderingAPI, camera);
