@@ -4,3 +4,6 @@
 [submodule "GATE/vendor/glm"]
 	path = GATE/vendor/glm
 	url = https://github.com/g-truc/glm.git
+[submodule "DesktopStudio/vendor/ImGui/ImGui"]
+	path = DesktopStudio/vendor/ImGui/ImGui
+	url = https://github.com/ocornut/imgui.git
