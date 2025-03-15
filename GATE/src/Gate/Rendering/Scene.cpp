@@ -25,6 +25,8 @@ namespace Gate {
         shader->UploadUniformMat4("u_ViewProjection", m_Camera->GetViewProjectionMatrix());
         shader->UploadUniformMat4("u_Transform", transform);
         
+        shader->UploadUniformFloat4("u_Color", {0.0f, 1.0f, 0.0f, 1.0f});
+        
         m_RenderingAPI->Draw(shader, vertexArray);
     }
 

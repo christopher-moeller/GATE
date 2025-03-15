@@ -1,7 +1,9 @@
 #include "Gate.h"
 
 #ifdef GATE_PLATFORM_MACOS
+
 #include "Utils/MacOSUtils.h"
+
 #endif
 
 #include "GUI/ImGuiContext.h"
@@ -28,6 +30,7 @@ int main() {
     });
     
     Gate::ExampleTriangleRO triangle;
+    Gate::Quad2D quad;
     
     Gate::StandardCamera* standardCamera = new Gate::StandardCamera(app->GetWidth(), app->GetHeight());
 
@@ -42,7 +45,7 @@ int main() {
         
         Gate::Scene scene = app->GetRenderer()->NewScene(standardCamera);
         scene.ClearColor({1.0f, 0.0f, 0.0f, 1.0f});
-        scene.Submit(triangle);
+        scene.Submit(quad);
         scene.Render();
         
         Gate::CameraControllerAppContext context(app->GetEventManager().get(), timestep);
